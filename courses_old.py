@@ -1,9 +1,9 @@
-url = "file:///Users/shirley/Desktop/dropkick/Table%201_%20Computer%20Science%20-%20Science%20-%20The%20University%20of%20Sydney.htm"
+url = "http://sydney.edu.au/handbooks/science/table1/table1_computer_science.shtml"
 chemurl = "http://sydney.edu.au/handbooks/science/table1/table1_chemistry.shtml"
 from bs4 import BeautifulSoup
 import urllib
 
-html_doc = urllib.request.urlopen(chemurl)
+html_doc = urllib.request.urlopen(url)
 soup = BeautifulSoup(html_doc, 'html.parser')
 
 course = {}
@@ -100,15 +100,15 @@ def matchObjects(A):
 #     i.N=matchObjects(i.N)
     #print("--")
 
-for i in course.values():
-    print(i)
+# for i in course.values():
+    # print(i)
 
 import networkx as nx
 
 G = nx.DiGraph()
 
 G.add_nodes_from(course.keys())
-print(G)
+# print(G)
 for i in G.nodes:
     for j in course[i].P:
         if j in G.nodes:
@@ -127,20 +127,19 @@ nx.draw_spring(G, with_labels = True)
 # plt.show()
 # print('____End of the program____')
 
-def queryCourse(coursename):
+res_very_start = '{"name":"courses"'
+res_start = ',"children":[{'
+res_end = "}"
+res_mid = ""
+
+def query_course(coursename):
     #should return the nested json file rooted at the course.
     d = nx.dfs_successors(G, coursename)
-
+    print(d)
     
-
 
 
     #file = open("course.json","w")
 
+query_course('COMP2123')
 
-
-
-
-    return None
-
-queryCourse('CHEM3117')
