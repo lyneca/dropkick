@@ -2,7 +2,7 @@ url = "file:///Users/shirley/Desktop/dropkick/Table%201_%20Computer%20Science%20
 chemurl = "http://sydney.edu.au/handbooks/science/table1/table1_chemistry.shtml"
 from bs4 import BeautifulSoup
 import urllib
-html_doc = urllib.request.urlopen(url)
+html_doc = urllib.request.urlopen(chemurl)
 soup = BeautifulSoup(html_doc, 'html.parser')
 
 course = {}
@@ -24,6 +24,11 @@ class Course():
         for key in kwargs:
             setattr(self, key, kwargs[key])
 
+    def __str__(self):
+        return 'Unit Code: ' + self.code + '\n' + '\nName: ' + self.name+ '\n' + '\nCredit:' + self.credit+'\n'+'\nA:' + str(self.A) + '\n'+'\nP:' + str(self.P) + '\n'+'\nN:' + str(self.N) + '\n' + '\nTime:' + self.time + "\n"
+
+
+
 table = soup.find(id="w4")
 for row in table.find_all('tr',valign="top"):
     col = row.find_all('td')
@@ -33,7 +38,6 @@ for row in table.find_all('tr',valign="top"):
         code = matchList(name)[0]
         credit = col[1].text
         time = col[3].text
-        course[name] = Course(name=name, credit = credit,time=time)
         APN = col[2].text
 
         A = []
@@ -73,8 +77,48 @@ for row in table.find_all('tr',valign="top"):
 
                 #try to extract substring of Assumed Knowledge
 
-        
-        print('Unit Code: '+code+'\n'+'\nName: '+name+'\n'+'\nCredit:'+credit+'\n','\nA:'+str(A)+'\n','\nP:'+str(P)+'\n','\nN:'+str(N)+'\n'+'\nTime:'+time+"\n")
-    print("--")
 
-print(type(soup))
+
+
+        course[code] = Course(code =code,name=name, credit=credit,time=time, A=A, P=P, N=N)
+
+
+def matchObjects(A):
+    #A =['1110' '1111'...]
+    A= list(set(A) & set(course.keys()))
+    l = [course[x] for x in A]
+    if len(l)>0:
+        return l
+    else:
+        return A
+
+
+# for i in course.values():
+#     i.A=matchObjects(i.A)
+#     i.P=matchObjects(i.P)
+#     i.N=matchObjects(i.N)
+    #print("--")
+
+for i in course.values():
+    print(i)
+
+import networkx as nx
+G = nx.DiGraph()
+
+G.add_nodes_from(course.keys())
+print(G)
+for i in G.nodes:
+    for j in course[i].P:
+        if j in G.nodes:
+            G.add_edge(j, i)
+    for j in course[i].A:
+        if j in G.nodes:
+            G.add_edge(j, i)
+
+print(G.edges())
+import matplotlib.pyplot as plt
+
+nx.draw_spring(G, with_labels = True)
+plt.draw()
+plt.show()
+print('____End of the program____')
