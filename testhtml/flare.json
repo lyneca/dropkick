@@ -1,0 +1,107 @@
+{
+    "name": "flare",
+    "children": [{
+        
+        "name": "data",
+        "children": [{
+            "name": "converters",
+            "children": [{
+                "name": "IDataConverter"
+                
+            }, {
+                "name": "JSONConverter"
+               
+            }]
+        }, {
+            "name": "DataUtil"
+            
+        }]
+    }, {
+        "name": "flex",
+        "children": [{
+            "name": "FlareVis"
+            
+        }]
+    }, {
+        "name": "scale",
+        "children": [{
+            "name": "IScaleMap",
+            "size": 2105
+        }, {
+            "name": "LinearScale",
+            "size": 1316
+        }]
+    }, {
+        "name": "util",
+        "children": [{
+            "name": "Arrays",
+            "size": 8258
+        }, {
+            "name": "Colors",
+            "size": 10001
+        }, {
+            "name": "Dates",
+            "size": 8217
+        }, {
+            "name": "Displays",
+            "size": 12555
+        }, {
+            "name": "Filter",
+            "size": 2324
+        }, {
+            "name": "Geometry",
+            "size": 10993
+        }, {
+            "name": "heap",
+            "children": [{
+                "name": "FibonacciHeap",
+                "size": 9354
+            }, {
+                "name": "HeapNode",
+                "size": 1233
+            }]
+        }, {
+            "name": "IEvaluable",
+            "size": 335
+        }, {
+            "name": "IPredicate",
+            "size": 383
+        }, {
+            "name": "IValueProxy",
+            "size": 874
+        }, {
+            "name": "math",
+            "children": [{
+                "name": "DenseMatrix",
+                "size": 3165
+            }, {
+                "name": "IMatrix",
+                "size": 2815
+            }, {
+                "name": "SparseMatrix",
+                "size": 3366
+            }]
+        }, {
+            "name": "Maths",
+            "size": 17705
+        }, {
+            "name": "Orientation",
+            "size": 1486
+        }, {
+            "name": "palette",
+            "children": [{
+                "name": "ColorPalette",
+                "size": 6367
+            }, {
+                "name": "Palette",
+                "size": 1229
+            }, {
+                "name": "ShapePalette",
+                "size": 2059
+            }, {
+                "name": "SizePalette",
+                "size": 2291
+            }]
+        }]
+    }]
+}
