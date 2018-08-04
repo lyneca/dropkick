@@ -2,6 +2,7 @@ url = "file:///Users/shirley/Desktop/dropkick/Table%201_%20Computer%20Science%20
 chemurl = "http://sydney.edu.au/handbooks/science/table1/table1_chemistry.shtml"
 from bs4 import BeautifulSoup
 import urllib
+
 html_doc = urllib.request.urlopen(chemurl)
 soup = BeautifulSoup(html_doc, 'html.parser')
 
@@ -103,6 +104,7 @@ for i in course.values():
     print(i)
 
 import networkx as nx
+
 G = nx.DiGraph()
 
 G.add_nodes_from(course.keys())
@@ -110,15 +112,35 @@ print(G)
 for i in G.nodes:
     for j in course[i].P:
         if j in G.nodes:
-            G.add_edge(j, i)
+            G.add_edge(i, j)
     for j in course[i].A:
         if j in G.nodes:
-            G.add_edge(j, i)
+            G.add_edge(i, j)
 
-print(G.edges())
+
+#print(G.edges())
+import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
 
 nx.draw_spring(G, with_labels = True)
-plt.draw()
-plt.show()
-print('____End of the program____')
+# plt.draw()
+# plt.show()
+# print('____End of the program____')
+
+def queryCourse(coursename):
+    #should return the nested json file rooted at the course.
+    d = nx.dfs_successors(G, coursename)
+
+    
+
+
+
+    #file = open("course.json","w")
+
+
+
+
+
+    return None
+
+queryCourse('CHEM3117')
