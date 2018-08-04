@@ -14,6 +14,12 @@ def matchCode(string):
     else:
         return False
 
+def findCourseList(string):
+    #find all matched course code in a string.
+    return None
+
+
+
 class Course():
     def __init__(self, *initial_data,**kwargs):
         for key in kwargs:
@@ -29,11 +35,18 @@ for row in table.find_all('tr',valign="top"):
         time = col[3].text
         course[name] = Course(name=name, credit = credit,time=time)
         APN = col[2].text
+
         A = []
         P = []
         N = []
+        A_pos = APN.find("A")
+        P_pos = APN.find("P")
+        N_pos = APN.find("N")
         if len(APN)!=1:
-            #empty prerequisite bar
+            #non empty prerequisite bar
+            if A_pos!=-1 and P_pos!=-1:
+                A.append(APN[A_pos:P_pos])
+                #try to extract substring of Assumed Knowledge
             pass
 
 
