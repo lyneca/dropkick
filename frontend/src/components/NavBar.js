@@ -5,18 +5,25 @@ import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 const NavBar = () => {
+    
+    var orange = '#ff9800';
+    var teal = '#a7ffeb';
+    var black = '#212121';
+    var white = '#FAFAFA'; 
+
     const inputProps = {
         step: 300,
       };
+    
     return(
         <div>
         <AppBar position="static">
-            <Grid container justify = "center">
+            <Grid container justify = "center" style={{background: black}}>
                 <Toolbar>
-                    <Typography variant="title" color="inherit" align = "center" >
-                    Enter a Course :
+                    <Typography variant="headline" color="inherit" style={{color: orange}}>
+                        Enter a Course 
                     </Typography>
-                    <TextField id="time" type="string" inputProps={inputProps} />
+                    <TextField id="time" type="string" inputProps={inputProps} margin="dense" fullWidth={true} style={{background: white}}/>
                 </Toolbar>
             </Grid>
         </AppBar>

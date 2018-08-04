@@ -5,6 +5,7 @@ class App extends Component {
     return (
       <div>
         <NavBar />
+        <img src={require('./wallpaper-that-moves-HD9-1.jpg')} />
       </div>
     )
   }
