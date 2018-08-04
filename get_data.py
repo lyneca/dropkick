@@ -37,19 +37,40 @@ def data_from_unit(code):
     prohibs = get_part(content, "Pro")
     assumed = get_part(content, "Assumed")
 
-    print("Unit {}:".format(code.upper()))
+    # print("Unit {}:".format(code.upper()))
 
-    print("  Pre-requisites:", unwrap(prereqs))
-    print("  Co-requisites: ", unwrap(coreqs))
-    print("  Prohibitions:  ", unwrap(prohibs))
-    print("  Ass. Knowledge:", unwrap(assumed))
+    # print("  Pre-requisites:", unwrap(prereqs))
+    # print("  Co-requisites: ", unwrap(coreqs))
+    # print("  Prohibitions:  ", unwrap(prohibs))
+    # print("  Ass. Knowledge:", unwrap(assumed))
 
-    return {'unit_preregs':prereqs, 'unit_coreqs':coreqs, 'unit_prohibs':prohibs, 'unit_assumed':assumed}
+    if prereqs is None:
+        return None
+    return unwrap(prereqs)
 
+res_very_start = '{"name":"courses"'
+res_start = ',"children":[{'
+res_end = '}'
+res_mid = ''
 
-if __name__ == "__main__":
-  while True:
-    unit = input("Unit: ")
-    print()
-    data_from_unit(unit)
-    print()
+def get_json(code, res):
+    arr = data_from_unit(code)
+
+    res += '{"name":"' + code + '"'
+    if arr != None:
+        res += ',"children":['
+        count = 0
+        for unit in arr:
+            count += 1
+            res = get_json(unit, res)
+            if count < len(arr):
+                res += ','
+        res += ']'
+    res += '}'
+
+    return res
+
+res = get_json(input('Enter a unit: '), '')
+
+print(res)
+
