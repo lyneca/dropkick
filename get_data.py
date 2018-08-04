@@ -44,8 +44,11 @@ def data_from_unit(code):
     print("  Prohibitions:  ", unwrap(prohibs))
     print("  Ass. Knowledge:", unwrap(assumed))
 
+    return {'unit_preregs':prereqs, 'unit_coreqs':coreqs, 'unit_prohibs':prohibs, 'unit_assumed':assumed}
 
-while True:
+
+if __name__ == "__main__":
+  while True:
     unit = input("Unit: ")
     print()
     data_from_unit(unit)
