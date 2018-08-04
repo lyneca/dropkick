@@ -21,11 +21,15 @@
 // export default App;
 import React, { Component } from 'react'
 import NavBar from './components/NavBar'
+import SearchBar from './components/SearchBar'
 class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar 
+          // <SearchBar />
+        />
+        
       </div>
     )
   }
