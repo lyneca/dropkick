@@ -33,6 +33,7 @@ const NavBar = () => {
 
     function myFunction(e){
         console.log("hello");
+        window.location.href = './unit.html';
     }
 
     return(
@@ -47,8 +48,8 @@ const NavBar = () => {
                     </Typography>
                     
                     <TextField id="time" type="string" inputProps={inputProps} margin="dense" style={{background: white,marginLeft:20}}/>
-                    
-                    <Button onClick={(e) => {myFunction(); e.preventDefault();}} variant="contained" style={{background: white,marginLeft:10}} >Submit</Button>
+                     {/* onClick={(e) => {myFunction()}} */}
+                    <div><Button variant="contained" style={{background: white,marginLeft:10}} ><a href="./unit.html">Submit</a></Button></div>
                     
                 </Toolbar>
             
