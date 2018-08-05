@@ -70,7 +70,15 @@ def get_json(code, res):
 
     return res
 
-res = get_json(input('Enter a unit: '), '')
+def accept_request(code):
+    res = get_json(code, '')
+    with open('course.json', 'w+') as f:
+        f.write(res)
+    print('JSON generated')
+    print(res)
+    return True
 
-print(res)
+accept_request('COMP2017')
+
+# print(res)
 
