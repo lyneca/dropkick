@@ -71,6 +71,8 @@ def get_json(code, res):
     return res
 
 def accept_request(code):
+    if not re.match('[A-Za-z]{4}[0-9]{4}', code):
+        return False
     try:
         res = get_json(code, '')
     except:
