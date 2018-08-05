@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 import sys
 #raise Http404("sys.path = "+str(sys.path))
-from get_data import data_from_unit
+from get_data import accept_request
 
 # Create your views here.
 
@@ -18,11 +18,12 @@ def page(request, unit):
       page_context = {"project_name":"DropKick", "unit_name":str(unit).upper()}
     except:
       raise Http404("AHHHHHHH! I can't find your webpage! ... But you managed to end up here thought!")
-    try:
-      unit_context = data_from_unit(str(unit))
-    except:
-      raise Http404("We are unable to get your unit's content due to it not being implemented. Also, django doesn't have Error 501 :.(")
-    page_context.update(unit_context)
-    print(page_context)
-    return render(request, "viewer/view_units.html", page_context)
+    #try:
+    accept_request(unit)
+    #except:
+    #  raise Http404("We are unable to get your unit's content due to it not being implemented. Also, django doesn't have Error 501 :.(")
+    #page_context.update(unit_context)
+    #print(page_context)
+
+    return render(request, "viewer/unit_flow.html", page_context)
 

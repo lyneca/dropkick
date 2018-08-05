@@ -71,14 +71,20 @@ def get_json(code, res):
     return res
 
 def accept_request(code):
-    res = get_json(code, '')
+    try:
+        res = get_json(code, '')
+    except:
+        print('Error. JSON generation failed')
+        with open('course.json', 'w+') as f:
+            pass
     with open('course.json', 'w+') as f:
         f.write(res)
     print('JSON generated')
     print(res)
     return True
 
-accept_request('COMP2017')
+#accept_request('COMP2017')
 
 # print(res)
+
 
